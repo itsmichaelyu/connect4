@@ -12,11 +12,15 @@ public class Main {
                 game[i][j] = 0;
             }
         }
+
         Scanner input = new Scanner(System.in);
         render(game);
         while (win == 0) {
-            System.out.print("Enter a row : ");
-            int row = input.nextInt();
+            int row = -1;
+            while (row > size || row < 1) {
+                System.out.print("Enter a row : ");
+                row = input.nextInt();
+            }
             for (int i = size-1; i >= 0; i--) {
                 if (game[i][row-1] == 0) {
                     game[i][row-1] = turn ? 1 : 2;
@@ -29,7 +33,6 @@ public class Main {
         }
         System.out.println("Game Over");
         System.out.println("Player " + (win == 1 ? "X" : "O") + " wins");
-
     }
 
     private static void render(int[][] game) {
